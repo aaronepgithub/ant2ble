@@ -1,12 +1,12 @@
 # Bluetooth Heart Rate Monitor Server
 
-This application emulates a Bluetooth Low Energy (BLE) heart rate monitor that broadcasts random heart rate values between 80-120 BPM every 15 seconds. It's designed to work with Wahoo bike computers and other BLE heart rate monitor compatible devices.
+This application emulates a Bluetooth heart rate monitor that broadcasts random heart rate values between 80-120 BPM every 15 seconds. It's designed to work with Wahoo bike computers and other Bluetooth heart rate monitor compatible devices.
 
 ## Prerequisites
 
 This application is designed for Windows and requires:
-- Python 3.7 or higher
-- Compatible Bluetooth 4.0+ adapter
+- Python 3.7 or higher (compatible with Python 3.13)
+- Compatible Bluetooth adapter
 - Administrator privileges to run the application
 
 ## Installation
@@ -33,10 +33,12 @@ python heart_rate_server.py
 - Make sure Bluetooth is enabled on your Windows PC
 - Run the application as Administrator to ensure proper Bluetooth permissions
 - Ensure no other applications are using the Bluetooth adapter exclusively
+- Note: This implementation uses RFCOMM/SPP which may have compatibility limitations with some devices that expect true BLE heart rate service
 - Your Wahoo bike computer should be able to detect and connect to "HeartRateMonitor" as a heart rate sensor
 
 ## Notes
 
-- This implementation uses the Bleak library which provides cross-platform BLE support
-- Server functionality is primarily supported on Windows and macOS
-- On Linux, BLE server functionality may be limited or require additional setup
+- This implementation uses the PyBluez library for Bluetooth functionality
+- Server functionality has limitations on Windows for true BLE advertising
+- This implementation uses RFCOMM/SPP which may not be compatible with all devices expecting true BLE
+- On non-Windows platforms, BLE server capabilities may be limited
